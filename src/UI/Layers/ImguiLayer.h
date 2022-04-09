@@ -1,0 +1,37 @@
+#pragma once
+
+//#include "UI/UI.h"
+#include "Core/Layer.h"
+#include "Core/Window.h"
+
+#include "UI/Panels/Panel.h"
+#include "UI/Panels/NodeEditor.h"
+#include "UI/Panels/MenuBar.h"
+
+
+namespace Aero
+{
+    class ImGuiLayer :public Layer
+    {
+    public:
+
+        ImGuiLayer():Layer("ImguiLayer"){}
+        void onAttach() override;
+        void onDetach() override;
+        void onUpdate() override;
+        void onEvent(Event& event) override;
+        void renderPanels();
+
+    private:
+
+        const char* glsl_version = "#version 130";
+
+        ImGuiViewport* mainViewport;
+        ImGuiContext* context;
+
+        NodeEditor* node = new NodeEditor;
+        MenuBar* menu = new MenuBar;
+
+        std::vector<Panel*> panelsArray;
+    };
+}

@@ -1,0 +1,82 @@
+#include "UI/UI.h"
+#include "ImguiLayer.h"
+
+namespace Aero
+{
+
+    void ImGuiLayer::onAttach()
+    {
+
+        // Setup Dear ImGui context
+        IMGUI_CHECKVERSION();
+        context = ImGui::CreateContext();
+        ImGui::StyleColorsDark();   // Setup Dear ImGui style
+
+        ImGuiIO& io = ImGui::GetIO();
+        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+        UI& ui = UI::getInstance();
+        ImGui_ImplGlfw_InitForOpenGL(ui.getWindow(), true);
+        ImGui_ImplOpenGL3_Init(glsl_version);
+
+
+        panelsArray.push_back(node);
+        panelsArray.push_back(menu);
+    }
+
+    void ImGuiLayer::onUpdate()
+    {
+
+        ImGui::SetCurrentContext(context);
+
+        UI& ui = UI::getInstance();
+
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(ui.getWidth(), ui.getHeight());
+
+        // Start the Dear ImGui frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+
+        //Docking
+        mainViewport = ImGui::GetMainViewport();
+        ImGui::DockSpaceOverViewport(mainViewport);
+
+        renderPanels();
+        ImGui::ShowDemoWindow();
+
+        //ImGui Render
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    }
+
+    void ImGuiLayer::onEvent(Event &event)
+    {
+
+    }
+
+
+    void ImGuiLayer::onDetach()
+    {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+
+    }
+
+
+    void ImGuiLayer::renderPanels()
+    {
+        if(panelsArray.size()!=0)
+        {
+            for(int i = 0; i<(int)panelsArray.size(); i++)
+            {
+                panelsArray[i]->render();
+            }
+        }
+    }
+}
