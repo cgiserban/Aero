@@ -22,14 +22,14 @@
     <Filter Include="Source Files\UI\Panels">
       <UniqueIdentifier>{24ccd130-9ee0-4230-9dd1-6a386ffe8625}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI\Layers">
-      <UniqueIdentifier>{82b2d589-114e-49bb-b8e7-d1efefe6bf8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI\Event">
-      <UniqueIdentifier>{999d86d9-ebce-481d-baac-88166725172f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\UI\imgui">
       <UniqueIdentifier>{2cb81873-ca02-45bf-acc6-e2bbfb05296a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\Layers">
+      <UniqueIdentifier>{999d86d9-ebce-481d-baac-88166725172f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\Events">
+      <UniqueIdentifier>{82b2d589-114e-49bb-b8e7-d1efefe6bf8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,22 +58,22 @@
       <Filter>Source Files\UI\Panels</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Layers\GLFWLayer.cpp">
-      <Filter>Source Files\UI\Event</Filter>
+      <Filter>Source Files\UI\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Layers\ImguiLayer.cpp">
-      <Filter>Source Files\UI\Event</Filter>
+      <Filter>Source Files\UI\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Event\ApplicationEvent.cpp">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Event\Event.cpp">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Event\KeyEvent.cpp">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Event\MouseEvent.cpp">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClCompile>
     <ClCompile Include="src\Aero.cpp">
       <Filter>Source Files</Filter>
@@ -98,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp">
       <Filter>Source Files\UI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Shader.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,22 +132,22 @@
       <Filter>Source Files\UI\Panels</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Layers\GLFWLayer.h">
-      <Filter>Source Files\UI\Event</Filter>
+      <Filter>Source Files\UI\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Layers\ImguiLayer.h">
-      <Filter>Source Files\UI\Event</Filter>
+      <Filter>Source Files\UI\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Event\ApplicationEvent.h">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Event\Event.h">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Event\KeyEvent.h">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Event\MouseEvent.h">
-      <Filter>Source Files\UI\Layers</Filter>
+      <Filter>Source Files\UI\Events</Filter>
     </ClInclude>
     <ClInclude Include="vendor\imgui\imgui_impl_glfw.h">
       <Filter>Source Files\UI\imgui</Filter>
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="vendor\imgui\imgui_impl_opengl3_loader.h">
       <Filter>Source Files\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Shader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

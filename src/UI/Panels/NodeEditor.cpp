@@ -15,15 +15,6 @@ namespace Aero
 
             io = ImGui::GetIO(); (void)io;
 
-            /*
-
-            glm::mat4 M = glm::mat4();
-            glm::mat4 V = glm::lookAt(glm::vec3(0,1,0),glm::vec3(0,0,0),glm::vec3(0,1,0));
-            glm::mat4 P = glm::ortho(-6400,6400,6400,-6400);
-
-            glm::mat4 MVP = M * V * P;
-            */
-
             //-----------------------------
             static ImVector<ImVec2> points;
             static ImVec2 panning(0.0f, 0.0f);

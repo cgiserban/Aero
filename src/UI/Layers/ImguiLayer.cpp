@@ -3,6 +3,7 @@
 
 namespace Aero
 {
+    #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
     void ImGuiLayer::onAttach()
     {
@@ -15,6 +16,7 @@ namespace Aero
         ImGuiIO& io = ImGui::GetIO();
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 
         UI& ui = UI::getInstance();
         ImGui_ImplGlfw_InitForOpenGL(ui.getWindow(), true);
@@ -22,8 +24,9 @@ namespace Aero
 
 
         panelsArray.push_back(node);
-        panelsArray.push_back(menu);
+        //panelsArray.push_back(menu);
     }
+
 
     void ImGuiLayer::onUpdate()
     {
@@ -43,7 +46,7 @@ namespace Aero
 
         //Docking
         mainViewport = ImGui::GetMainViewport();
-        ImGui::DockSpaceOverViewport(mainViewport);
+        ImGui::DockSpaceOverViewport(mainViewport, ImGuiDockNodeFlags_NoSplit | ImGuiDockNodeFlags_PassthruCentralNode);
 
         renderPanels();
         ImGui::ShowDemoWindow();
@@ -52,10 +55,21 @@ namespace Aero
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            GLFWwindow* backup_current_context = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(backup_current_context);
+        }
+
+
     }
 
     void ImGuiLayer::onEvent(Event &event)
     {
+        EventDispatcher Dispatcher(event);
+        Dispatcher.dispatch<WindowResizeEvent>(BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
 
     }
 
@@ -78,5 +92,16 @@ namespace Aero
                 panelsArray[i]->render();
             }
         }
+    }
+    bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
+    {
+
+        UI& ui = UI::getInstance();
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(ui.getWidth(), ui.getHeight());
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+        glViewport(0, 0, ui.getWidth(), ui.getHeight());
+      
+        return true;
     }
 }

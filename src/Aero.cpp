@@ -1,11 +1,9 @@
 #include "Core/Application.h"
 
-using namespace Aero;
-
 int main(int, char**)
 {
-    Application* Aero = new Application;
-    Aero->run();
+    Aero::Application* app = new Aero::Application;
+    app->run();
 
     return 0;
 }

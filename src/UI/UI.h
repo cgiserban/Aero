@@ -33,6 +33,7 @@ namespace Aero
 
         static UI& getInstance() {return *instance;}
         GLFWwindow* getWindow() {return glfwLayer->get();}
+        
         unsigned int getWidth(){return glfwLayer->getHeight();}
         unsigned int getHeight(){return glfwLayer->getWidth();}
 

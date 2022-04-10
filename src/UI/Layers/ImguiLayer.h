@@ -1,6 +1,9 @@
 #pragma once
 
 //#include "UI/UI.h"
+
+#include "UI/Event/ApplicationEvent.h"
+
 #include "Core/Layer.h"
 #include "Core/Window.h"
 
@@ -24,6 +27,9 @@ namespace Aero
 
     private:
 
+        bool OnWindowResizeEvent(WindowResizeEvent& e);
+
+    private:
         const char* glsl_version = "#version 130";
 
         ImGuiViewport* mainViewport;
