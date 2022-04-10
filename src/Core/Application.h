@@ -13,7 +13,6 @@ namespace Aero
 
     private:
         UI appUI;
-
     }; 
 
 

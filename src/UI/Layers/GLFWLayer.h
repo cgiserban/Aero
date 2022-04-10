@@ -5,9 +5,9 @@
 
 #include "Core/Layer.h"
 #include "Core/Window.h"
-#include "glm/vec4.hpp"
 
-#include "Renderer/Shader.h"
+#include "Renderer/Renderer.h"
+
 
 namespace Aero
 {
@@ -25,10 +25,9 @@ namespace Aero
         void setVSync(bool enabled) override;
 
         static void init();
-        void drawInit();
 
         void configCallbacks();
-        void update(){glfwSwapBuffers(window);}
+        void update(){ glfwSwapBuffers(window); }
 
         GLFWwindow* get(){return window;}
 
@@ -37,21 +36,15 @@ namespace Aero
 
         WindowData data;
 
-        unsigned int vertexArray, vertexBuffer, indexBuffer;
-        glm::vec4 bgColor=glm::vec4(0.18,0.18,0.18,1.0);
 
     private:
 
-
-
         bool onResize(WindowResizeEvent& e);
 
-
+        Renderer* renderEngine;
         bool isRunning = true;
         GLFWwindow* window;
         WindowProps props;
-
-        std::unique_ptr<Shader> testShader;
 
     };
 }

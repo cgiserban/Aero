@@ -1,15 +1,11 @@
 #pragma once
 
-//#include "UI/UI.h"
-
-#include "UI/Event/ApplicationEvent.h"
-
 #include "Core/Layer.h"
-#include "Core/Window.h"
 
 #include "UI/Panels/Panel.h"
 #include "UI/Panels/NodeEditor.h"
 #include "UI/Panels/MenuBar.h"
+#include <vector>
 
 
 namespace Aero

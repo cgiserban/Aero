@@ -1,7 +1,7 @@
 #pragma once
-#include <vector>
-#include <algorithm>
+
 #include "Core/Layer.h"
+#include <vector>
 
 namespace Aero
 {

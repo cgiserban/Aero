@@ -1,14 +1,10 @@
 #pragma once 
 
-
 #include "Layers/GLFWLayer.h"
 #include "Layers/ImguiLayer.h"
 
-#include "Core/Window.h"
 #include "Core/LayerStack.h"
 #include "Core/Log.h"
-
-#include <vector>
 
 
 namespace Aero
@@ -24,7 +20,6 @@ namespace Aero
         void run();
         void shutdown();
 
-        void renderPanels();
         void onEvent(Event& event);
         bool onWindowClose(WindowCloseEvent& e);
 
@@ -34,8 +29,8 @@ namespace Aero
         static UI& getInstance() {return *instance;}
         GLFWwindow* getWindow() {return glfwLayer->get();}
         
-        unsigned int getWidth(){return glfwLayer->getHeight();}
-        unsigned int getHeight(){return glfwLayer->getWidth();}
+        float getWidth(){return glfwLayer->getHeight();}
+        float getHeight(){return glfwLayer->getWidth();}
 
     private:
 

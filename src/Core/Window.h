@@ -1,8 +1,6 @@
 #pragma once
 
-#include <functional>
 #include "Core/Log.h"
-
 #include "UI/Event/Event.h"
 
 
@@ -37,8 +35,8 @@ namespace Aero
         ~Window();
 
         static Window* create();
-        unsigned int getHeight(){return data.height;}
-        unsigned int getWidth(){return data.width;}
+        float getHeight(){return data.height;}
+        float getWidth(){return data.width;}
 
 
         virtual void setVSync(bool enabled);
