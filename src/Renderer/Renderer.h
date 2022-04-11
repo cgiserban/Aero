@@ -19,6 +19,7 @@ namespace Aero
 
 		void init();
 		void draw();
+		void clear();
 
 	private:
 

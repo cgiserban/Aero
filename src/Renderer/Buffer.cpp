@@ -24,6 +24,11 @@ namespace Aero
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
+	void VertexBuffer::setLayout(const BufferLayout& Layout)
+	{
+		layout = Layout;
+	}
+
 	//------------------------------------------------------------------------------------------------------------
 	//IBO
 	//------------------------------------------------------------------------------------------------------------
@@ -54,6 +59,27 @@ namespace Aero
 	uint32_t IndexBuffer::getCount()
 	{
 		return bufferCount;
+	}
+
+	VertexArray::VertexArray()
+	{
+		glCreateVertexArrays(1, &vaoID);
+		glBindVertexArray(vaoID);
+	}
+
+	VertexArray::~VertexArray()
+	{
+		glDeleteVertexArrays(1,&vaoID);
+	}
+
+	void VertexArray::bind()
+	{
+		glBindVertexArray(vaoID);
+	}
+
+	void VertexArray::unbind()
+	{
+		glBindVertexArray(0);
 	}
 
 }

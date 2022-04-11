@@ -116,5 +116,36 @@ namespace Aero
 		glDeleteProgram(rendererID);
 	}
 
+	void Shader::setUniformf(float f, const char* name)
+	{
+		unsigned int location = glGetUniformLocation(rendererID, name);
+		glUniform1f(location, f);
+	}
+
+	void Shader::setUniformi(int i, const char* name)
+	{
+		unsigned int location = glGetUniformLocation(rendererID, name);
+		glUniform1i(location, i);
+	}
+
+	void Shader::setUniform3f(glm::vec3 vect, const char* name)
+	{
+		unsigned int location = glGetUniformLocation(rendererID, name);
+		glUniform3f(location, vect.x, vect.y, vect.z);
+	}
+
+	void Shader::setUniform4f(glm::vec4 vect, const char* name)
+	{
+		unsigned int location = glGetUniformLocation(rendererID, name);
+		glUniform4f(location, vect.r, vect.g, vect.b, vect.a);
+	}
+
+	void Shader::setUniformM4f(glm::mat4 matrix, const char* name)
+	{
+		unsigned int location = glGetUniformLocation(rendererID, name);
+		glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
+	}
+
+
 
 }
