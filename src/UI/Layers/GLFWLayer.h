@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include <GLFW/glfw3.h> // Will drag system OpenGL headers
+#include <GLFW/glfw3.h>
 
 #include "Core/Layer.h"
 #include "Core/Window.h"
@@ -15,8 +15,6 @@ namespace Aero
     {
     public:
         GLFWLayer():Layer("GLFWLayer"), Window(WindowProps()){}
-
-
 
         void onAttach() override;
         void onDetach() override;

@@ -8,7 +8,7 @@ namespace Aero
 	class VertexBuffer
 	{
 	public:
-		VertexBuffer(float* vertices, uint32_t size);
+		VertexBuffer(float* vertices, uint32_t size, GLenum drawType);
 		~VertexBuffer();
 
 		void bind();
@@ -23,7 +23,7 @@ namespace Aero
 	class IndexBuffer
 	{
 	public:
-		IndexBuffer(uint32_t* indices, uint32_t count);
+		IndexBuffer(uint32_t* indices, uint32_t count, GLenum drawType);
 		~IndexBuffer();
 
 		void bind();

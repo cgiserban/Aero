@@ -9,6 +9,10 @@ namespace Aero
 
     UI::UI()
     {
+        if (instance != nullptr)
+        {
+            AERO_CORE_ERROR("Program Already Running!");
+        }
         instance = this;
         init();
 

@@ -27,6 +27,8 @@ namespace Aero
         AERO_CORE_INFO("OpenGL:{0}", (const char*)glGetString(GL_VERSION));
         AERO_CORE_INFO("Hardware:{0}{1}", (const char*)glGetString(GL_RENDERER), (const char*)glGetString(GL_VERSION));
 
+        glfwWindowHint(GLFW_SAMPLES, 4);
+
         configCallbacks();
 
         renderEngine = new Renderer();
@@ -35,11 +37,9 @@ namespace Aero
 
     void GLFWLayer::onDetach()
     {
-
         glfwWindowShouldClose(window);
         glfwDestroyWindow(window);
         glfwTerminate();
-
     }
 
 
@@ -47,7 +47,6 @@ namespace Aero
     {
         glfwPollEvents();
         renderEngine->draw();
-
     }
 
     void GLFWLayer::configCallbacks()
@@ -174,6 +173,7 @@ namespace Aero
         if (!glfwInit())
             AERO_CORE_ERROR("Failed Initializing GLFW!");
 
+        //glfwWindowHint(GLFW_SAMPLES, 4);
 
 
     }

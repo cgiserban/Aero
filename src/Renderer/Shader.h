@@ -15,7 +15,7 @@ namespace Aero
 
 		void bind() { glUseProgram(rendererID); }
 		void unbind() { glUseProgram(0); }
-
+		uint32_t get() { return rendererID; }
 
 	private:
 		uint32_t rendererID;
