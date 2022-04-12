@@ -35,8 +35,8 @@ namespace Aero
         ~Window();
 
         static Window* create();
-        float getHeight(){return data.height;}
-        float getWidth(){return data.width;}
+        unsigned int getHeight(){return data.height;}
+        unsigned int getWidth(){return data.width;}
 
 
         virtual void setVSync(bool enabled);

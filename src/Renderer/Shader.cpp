@@ -116,6 +116,22 @@ namespace Aero
 		glDeleteProgram(rendererID);
 	}
 
+	std::string Shader::ParseShader(const std::string& filepath)
+	{
+		std::ifstream stream(filepath);
+		std::string line;
+
+		std::stringstream ss;
+	
+		while (getline(stream, line))
+		{
+			ss << line << '\n';
+		}
+
+		return ss.str();
+
+	}
+
 	void Shader::setUniformf(float f, const char* name)
 	{
 		unsigned int location = glGetUniformLocation(rendererID, name);

@@ -11,7 +11,7 @@ namespace Aero {
 		Camera();
 
 		Camera(glm::vec3 _eye, glm::vec3 _look, glm::vec3 _up,
-			   float _fov=45.0, float _aspectRatio = 1.77, float _near = 0.01, float _far = 100.0);
+			double _fov=45.0, double _aspectRatio = 1.77, double _near = 0.0001, double _far = 500.0);
 
 		
 		void move(glm::vec3 m);
@@ -28,11 +28,11 @@ namespace Aero {
 
 	//private:
 
-		float clipNear;
-		float clipFar;
+		double clipNear;
+		double clipFar;
 
-		float fov;
-		float aspectRatio;
+		double fov;
+		double aspectRatio;
 
 		glm::vec3 pos; //Camera Pos
 		glm::vec3 look; //Camera Target

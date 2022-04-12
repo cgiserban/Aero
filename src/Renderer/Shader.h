@@ -3,6 +3,9 @@
 #include <GL/glew.h>
 #include "Core/Log.h"
 #include "glm/glm.hpp"
+#include <sstream>
+#include <fstream>
+#include <string>
 
 namespace Aero
 {
@@ -11,6 +14,8 @@ namespace Aero
 	public:
 		Shader(const std::string& vs, const std::string& fs);
 		~Shader();
+
+		static std::string ParseShader(const std::string& filePath);
 
 
 		void bind() { glUseProgram(rendererID); }

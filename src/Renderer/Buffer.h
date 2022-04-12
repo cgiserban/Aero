@@ -1,13 +1,29 @@
 #pragma once
 #include "GL/glew.h"
+
 #include <cstdint>
 #include <string>
 #include <vector>
 #include <initializer_list>
+
 #include "Core/Log.h"
+#include "glm/vec3.hpp"
+#include "glm/vec2.hpp"
 
 namespace Aero
 {
+
+	struct Vertex {
+		glm::vec3 Position;
+		glm::vec3 Normal;
+		glm::vec2 TexCoords;
+	};
+
+	struct Texture {
+		unsigned int id;
+		std::string type;
+		std::string path;
+	};
 
 	enum class ShaderDataType
 	{
@@ -123,6 +139,7 @@ namespace Aero
 		{
 			uint32_t off = 0;
 			elementsStride = 0;
+
 			for (auto& elem : elements)
 			{
 				elem.offset = off;
@@ -143,6 +160,8 @@ namespace Aero
 	{
 	public:
 		VertexBuffer(float* vertices, uint32_t size, GLenum drawType);
+		VertexBuffer(std::vector<Vertex>vertices, uint32_t size, GLenum drawType);
+
 		~VertexBuffer();
 
 		void bind();
@@ -160,6 +179,8 @@ namespace Aero
 	{
 	public:
 		IndexBuffer(uint32_t* indices, uint32_t count, GLenum drawType);
+		IndexBuffer(std::vector<uint32_t> indices, uint32_t count, GLenum drawType);
+
 		~IndexBuffer();
 
 		void bind();
@@ -174,15 +195,24 @@ namespace Aero
 	class VertexArray
 	{
 	public:
-
 		VertexArray();
+		VertexArray(VertexBuffer* VBO, IndexBuffer* IBO);
 		~VertexArray();
 
 		void bind();
 		void unbind();
 
+		void setVertexBuffer(VertexBuffer* VBO);
+		void setIndexBuffer(IndexBuffer* IBO);
+
+
+
 	private:
 		uint32_t vaoID;
+
+		std::vector<VertexBuffer*> vbos;
+		IndexBuffer* ibo;
+
 	};
 
 

@@ -10,18 +10,18 @@ namespace Aero
 	}
 
 	Camera::Camera(glm::vec3 _eye, glm::vec3 _look, glm::vec3 _up,
-				   float _fov, float _aspectRatio, float _near, float _far)
+				   double _fov, double _aspectRatio, double _near, double _far)
 	{
 		pos = _eye;
 		look = _look;
-		u = _up;
+		up = _up;
 		fov = _fov;
 		aspectRatio = _aspectRatio;
 		clipNear = _near;
 		clipFar = _far;
 		
-		viewMatrix = glm::lookAt(pos, look, u);
-		projectionMatrix = glm::perspective(glm::degrees(fov), aspectRatio, clipNear, clipFar);
+		viewMatrix = glm::lookAt(pos, look, up);
+		projectionMatrix = glm::perspective(fov, aspectRatio, clipNear, clipFar);
 		viewProjectionMatrix = projectionMatrix * viewMatrix;
 		
 		update();
@@ -46,11 +46,11 @@ namespace Aero
 	void Camera::update()
 	{
 		dir = glm::normalize(pos - look);
-		r = glm::normalize(glm::cross(u, dir));
-		up = glm::normalize(glm::cross(r, dir));
+		//r = glm::normalize(glm::cross(up, dir));
+		//u = glm::normalize(glm::cross(r, dir));
 
-		viewMatrix = glm::lookAt(pos, look, u);
-		projectionMatrix = glm::perspective(glm::degrees(fov), aspectRatio, clipNear, clipFar);
+		viewMatrix = glm::lookAt(pos, look, up);
+		projectionMatrix = glm::perspective(fov, aspectRatio, clipNear, clipFar);
 		viewProjectionMatrix = projectionMatrix * viewMatrix;
 		
 	}

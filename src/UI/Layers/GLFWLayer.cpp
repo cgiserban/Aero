@@ -1,5 +1,5 @@
-#include "GLFWLayer.h"
 #include "UI/UI.h"
+#include "GLFWLayer.h"
 
 
 namespace Aero
@@ -24,14 +24,19 @@ namespace Aero
         if (glewInit() != GLEW_OK)
             AERO_CORE_ERROR("Failed Initializing GLEW!");
 
+
         AERO_CORE_INFO("OpenGL:{0}", (const char*)glGetString(GL_VERSION));
         AERO_CORE_INFO("Hardware:{0}{1}", (const char*)glGetString(GL_RENDERER), (const char*)glGetString(GL_VERSION));
 
-        glfwWindowHint(GLFW_SAMPLES, 4);
+
+
 
         configCallbacks();
 
         renderEngine = new Renderer();
+
+
+
 
     }
 

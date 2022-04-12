@@ -1,5 +1,6 @@
-#include "ImguiLayer.h"
 #include "UI/UI.h"
+#include "ImguiLayer.h"
+
 
 namespace Aero
 {
@@ -36,7 +37,7 @@ namespace Aero
         UI& ui = UI::getInstance();
 
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(ui.getWidth(), ui.getHeight());
+        io.DisplaySize = ImVec2(float(ui.getWidth()), float(ui.getHeight()));
 
         // Start the Dear ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -97,11 +98,16 @@ namespace Aero
     {
 
         UI& ui = UI::getInstance();
+        
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(ui.getWidth(), ui.getHeight());
+        float w = float(ui.getWidth());
+        float h = float(ui.getHeight());
+
+        io.DisplaySize = ImVec2(w,h);
         io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
-        glViewport(0, 0, ui.getWidth(), ui.getHeight());
-      
+        
+        glViewport(0, 0, GLsizei(w), GLsizei(h));
+        
         return true;
     }
 }

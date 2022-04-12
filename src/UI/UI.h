@@ -1,5 +1,7 @@
 #pragma once 
 
+#include <Windows.h>
+
 #include "Layers/GLFWLayer.h"
 #include "Layers/ImguiLayer.h"
 
@@ -29,8 +31,8 @@ namespace Aero
         static UI& getInstance() {return *instance;}
         GLFWwindow* getWindow() {return glfwLayer->get();}
         
-        float getWidth(){return glfwLayer->getHeight();}
-        float getHeight(){return glfwLayer->getWidth();}
+        unsigned int getWidth(){return glfwLayer->getHeight();}
+        unsigned int getHeight(){return glfwLayer->getWidth();}
 
     private:
 
