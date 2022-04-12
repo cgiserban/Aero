@@ -22,11 +22,12 @@ namespace Aero
     struct WindowData
     {
         const char* title;
-        unsigned int width;
-        unsigned int height;
+        unsigned int width = 1280;
+        unsigned int height = 720;
         bool isVSyncEnabled;
         EventCallbackFn EventCallback;
     };
+
     class Window
     {
     public:
@@ -35,8 +36,8 @@ namespace Aero
         ~Window();
 
         static Window* create();
-        unsigned int getHeight(){return data.height;}
-        unsigned int getWidth(){return data.width;}
+        virtual unsigned int getWidth(){return data.width;}
+        virtual unsigned int getHeight(){return data.height;}
 
 
         virtual void setVSync(bool enabled);

@@ -4,11 +4,8 @@ namespace Aero
 {
     // constructor
 
-    Mesh::Mesh(std::vector<Vertex> _vertices, std::vector<uint32_t> _indices)
+    Mesh::Mesh(std::vector<Vertex> vertices, std::vector<uint32_t> indices)
     {
-
-        this->vertices = _vertices;
-        this->indices = _indices;
 
         BufferLayout layout =
         {
@@ -19,26 +16,23 @@ namespace Aero
 
         vao = new VertexArray();
 
+        
         vbo = new VertexBuffer(vertices, vertices.size() * sizeof(Vertex), GL_STATIC_DRAW);
         vbo->setLayout(layout);
         vao->setVertexBuffer(vbo);
 
         ibo = new IndexBuffer(indices, indices.size(), GL_STATIC_DRAW);
+        
+
         vao->unbind();
+
 
     }
 
 
-    void Mesh::Draw(Shader* shader)
+    void Mesh::draw(Shader* shader)
     {
-        // draw mesh
-
-        vao->bind();
-        shader->bind();
         glDrawElements(GL_TRIANGLES, static_cast<uint32_t>(ibo->getCount()), GL_UNSIGNED_INT, 0);
-        
-        //vao->unbind();
-
     }
 
 }

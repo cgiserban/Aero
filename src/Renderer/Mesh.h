@@ -18,7 +18,7 @@ namespace Aero
 
         Mesh(std::vector<Vertex> vertices, std::vector<uint32_t> indices);
 
-        void Draw(Shader* shader);
+        void draw(Shader* shader);
 
         void bind() { vao->bind(); }
 
@@ -35,13 +35,10 @@ namespace Aero
 
     private:
 
+
         VertexArray* vao;
         VertexBuffer* vbo;
         IndexBuffer* ibo;
-
-        std::vector<Vertex> vertices;
-        std::vector<uint32_t> indices;
-        std::vector<Texture> textures;
 
         Shader* shader;
 

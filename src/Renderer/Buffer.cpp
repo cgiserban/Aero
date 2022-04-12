@@ -125,6 +125,9 @@ namespace Aero
 
 	}
 
+
+
+
 	void VertexArray::setIndexBuffer(IndexBuffer* IBO)
 	{
 

@@ -7,25 +7,27 @@
 #include "Core/Window.h"
 
 #include "Renderer/Renderer.h"
-
+#include <iostream>
 
 namespace Aero
 {
     class GLFWLayer : public Layer,public Window
     {
     public:
-        GLFWLayer():Layer("GLFWLayer"), Window(WindowProps()){}
+        GLFWLayer();
 
         void onAttach() override;
         void onDetach() override;
         void onUpdate() override;
         void onEvent(Event& event) override;
-        void setVSync(bool enabled) override;
 
-        static void init();
+        unsigned int getWidth() override;
+        unsigned int getHeight() override;
+
 
         void configCallbacks();
-        void update(){ glfwSwapBuffers(window); }
+        void pollEvents() { glfwPollEvents(); }// glfwSwapBuffers(window); }
+        void swapBuffers() { glfwSwapBuffers(window); }// glfwSwapBuffers(window); }
 
         GLFWwindow* get(){return window;}
 
@@ -37,7 +39,7 @@ namespace Aero
 
     private:
 
-        bool onResize(WindowResizeEvent& e);
+        bool OnWindowResizeEvent(WindowResizeEvent& e);
 
         Renderer* renderEngine;
         bool isRunning = true;

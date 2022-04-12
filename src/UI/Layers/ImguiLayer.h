@@ -35,5 +35,7 @@ namespace Aero
         MenuBar* menu = new MenuBar;
 
         std::vector<Panel*> panelsArray;
+        
+
     };
 }

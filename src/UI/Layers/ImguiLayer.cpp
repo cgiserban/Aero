@@ -15,6 +15,7 @@ namespace Aero
         ImGui::StyleColorsDark();   // Setup Dear ImGui style
 
         ImGuiIO& io = ImGui::GetIO();
+        io.IniFilename = "src/UI/imgui.ini";
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
@@ -25,19 +26,17 @@ namespace Aero
 
 
         panelsArray.push_back(node);
-        //panelsArray.push_back(menu);
+        panelsArray.push_back(menu);
     }
 
 
     void ImGuiLayer::onUpdate()
     {
-
         ImGui::SetCurrentContext(context);
 
         UI& ui = UI::getInstance();
-
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(float(ui.getWidth()), float(ui.getHeight()));
+        //io.DisplaySize = ImVec2(ui.getWidth(), ui.getHeight());
 
         // Start the Dear ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -63,7 +62,8 @@ namespace Aero
             ImGui::RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(backup_current_context);
         }
-
+        
+        
 
     }
 
@@ -96,18 +96,17 @@ namespace Aero
     }
     bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
     {
-
-        UI& ui = UI::getInstance();
         
+        //AERO_CLIENT_INFO("ResizedBrah!");
+        UI& ui = UI::getInstance();
         ImGuiIO& io = ImGui::GetIO();
-        float w = float(ui.getWidth());
-        float h = float(ui.getHeight());
+
+        float w = ui.getWidth();
+        float h = ui.getHeight();
 
         io.DisplaySize = ImVec2(w,h);
         io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
-        
-        glViewport(0, 0, GLsizei(w), GLsizei(h));
-        
-        return true;
+                
+        return false;
     }
 }

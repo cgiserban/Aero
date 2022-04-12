@@ -18,6 +18,7 @@ namespace Aero {
 		void dolly(float s);
 		void zoom(float s);
 
+		void setAspect(double aspect) { fov = aspect; update(); }
 		void setDefault();
 		void update();
 

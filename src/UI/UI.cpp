@@ -31,7 +31,6 @@ namespace Aero
     {
 
         Log::init();
-        GLFWLayer::init();
 
         glfwLayer = new GLFWLayer;
         imguiLayer = new ImGuiLayer;
@@ -53,8 +52,8 @@ namespace Aero
             for (Layer* layer : uiStack)
             {
                 layer->onUpdate();
-            }
-            glfwLayer->update();
+            }    
+            glfwLayer->swapBuffers();
         }
 
         shutdown();
@@ -82,12 +81,27 @@ namespace Aero
             if (event.handled) break;
         }
 
+        dispatcher.dispatch<WindowResizeEvent>(BIND_EVENT_FN(UI::onWindowResize));
     }
 
     bool UI::onWindowClose(WindowCloseEvent& e)
     {
         isRunning = false;
         return true;
+    }
+
+    bool UI::onWindowResize(WindowResizeEvent& e)
+    {
+
+        if (e.getWidth() == 0 || e.getHeight() == 0)
+        {
+            isMinimized = true;
+            return true;
+        }
+        isMinimized = false;
+        return false;
+
+
     }
 
     void UI::pushLayer(Layer *layer)

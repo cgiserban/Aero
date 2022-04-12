@@ -13,34 +13,53 @@ namespace Aero
     }
 
 
+    GLFWLayer::GLFWLayer() : Layer("GLFWLayer"), Window(WindowProps()) 
+    {
+        if (!glfwInit())
+            AERO_CORE_ERROR("Failed Initializing GLFW!");
+    
+        glfwWindowHint(GLFW_SAMPLES, 8);
+
+    }
+
     void GLFWLayer::onAttach()
     {
         
-        glfwWindowHint(GLFW_SAMPLES, 8);
-        window = glfwCreateWindow(props.width,props.height,props.title,nullptr,nullptr);
 
+        window = glfwCreateWindow(props.width,props.height,props.title,nullptr,nullptr);
+        
         glfwMakeContextCurrent(window);
+        
+        glfwSwapInterval(1); // VSync
         glfwSetWindowUserPointer(window,&data);
-        setVSync(true);
+
+        glfwSetWindowAspectRatio(window, props.width, props.height);
+        
 
         if (glewInit() != GLEW_OK)
             AERO_CORE_ERROR("Failed Initializing GLEW!");
 
-
         AERO_CORE_INFO("OpenGL:{0}", (const char*)glGetString(GL_VERSION));
         AERO_CORE_INFO("Hardware:{0}{1}", (const char*)glGetString(GL_RENDERER), (const char*)glGetString(GL_VERSION));
 
-
-
-
         configCallbacks();
-
         renderEngine = new Renderer();
 
-
-
-
     }
+
+
+    void GLFWLayer::onUpdate()
+    {
+        UI& ui = UI::getInstance();
+
+        glfwPollEvents();
+        
+        if (!ui.isWindowMimimized())
+        {
+            renderEngine->draw();
+        }
+    }
+
 
     void GLFWLayer::onDetach()
     {
@@ -50,31 +69,24 @@ namespace Aero
     }
 
 
-    void GLFWLayer::onUpdate()
-    {
-        glfwPollEvents();
-        renderEngine->draw();
-    }
-
     void GLFWLayer::configCallbacks()
     {
         // Window Event Callback
         //Error callback
         glfwSetErrorCallback(GLFWErrorCallback);
 
-
-        
         //Resize Callback
         glfwSetWindowSizeCallback(window, [](GLFWwindow* w,int _w, int _h)
         {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(w);
-            WindowResizeEvent resize(_w,_h);
-            data.EventCallback(resize);
+           
 
             data.width = _w;
             data.height = _h;
-            
-            glViewport(0, 0, data.width,data.height);
+
+            WindowResizeEvent event(_w, _h);
+            data.EventCallback(event);
+
 
         });
           
@@ -152,9 +164,10 @@ namespace Aero
         });
     }
 
-    bool GLFWLayer::onResize(WindowResizeEvent& e)
+    bool GLFWLayer::OnWindowResizeEvent(WindowResizeEvent& e)
     {
-        glViewport(0, 0, data.width, data.height);
+
+        glViewport(0, 0, e.getWidth(), e.getHeight());
 
         return true;
     }
@@ -163,26 +176,18 @@ namespace Aero
     void GLFWLayer::onEvent(Event &event)
     {
         EventDispatcher dispatcher(event);
-        dispatcher.dispatch<WindowResizeEvent>(BIND_EVENT_FN(GLFWLayer::onResize));
+        dispatcher.dispatch<WindowResizeEvent>(BIND_EVENT_FN(GLFWLayer::OnWindowResizeEvent));
 
     }
 
-    void GLFWLayer::setVSync(bool enabled)
+    unsigned int GLFWLayer::getWidth()
     {
-        if (enabled)
-            glfwSwapInterval(1);
-        else
-            glfwSwapInterval(0);
+        return data.width;
     }
 
-    void GLFWLayer::init()
+    unsigned int GLFWLayer::getHeight()
     {
-        if (!glfwInit())
-            AERO_CORE_ERROR("Failed Initializing GLFW!");
-
-        //glfwWindowHint(GLFW_SAMPLES, 4);
-
-
+        return data.height;
     }
 
 }
