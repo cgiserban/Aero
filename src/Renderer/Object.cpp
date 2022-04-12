@@ -2,14 +2,16 @@
 
 namespace Aero 
 {
-    Object::Object(std::string& path)
+    Object::Object(std::string path)
     {
+        
         loadModel(path);
     }
 
 
     void Object::loadModel(std::string& path)
     {
+        //Loading Scene
         Assimp::Importer import;
         const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -19,7 +21,6 @@ namespace Aero
         }
 
         processNode(scene->mRootNode, scene);
-
     }
 
     void Object::processNode(aiNode* node, const aiScene* scene)
@@ -100,18 +101,25 @@ namespace Aero
 
             }
             */
-
         }
 
         return Mesh(vertices, indices);//, textures);
     }
 
+
     void Object::draw(Shader* shader)
     {
         for (int i = 0; i < meshes.size(); i++)
         {
-            meshes[i].setShader(shader);
             meshes[i].Draw(shader);
+        }
+    }
+
+    void Object::unbind()
+    {
+        for (int i = 0; i < meshes.size(); i++)
+        {
+            meshes[i].unbind();
         }
     }
 

@@ -1,4 +1,4 @@
-#include "AssimpMesh.h"
+#include "Mesh.h"
 
 namespace Aero 
 {
@@ -17,13 +17,14 @@ namespace Aero
             {ShaderDataType::Float2, "texCoords"}
         };
 
+        vao = new VertexArray();
+
         vbo = new VertexBuffer(vertices, vertices.size() * sizeof(Vertex), GL_STATIC_DRAW);
         vbo->setLayout(layout);
+        vao->setVertexBuffer(vbo);
 
         ibo = new IndexBuffer(indices, indices.size(), GL_STATIC_DRAW);
-
-        vao = new VertexArray(vbo, ibo);
-
+        vao->unbind();
 
     }
 
@@ -33,8 +34,10 @@ namespace Aero
         // draw mesh
 
         vao->bind();
-        glDrawElements(GL_TRIANGLES, static_cast<uint32_t>(indices.size()), GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
+        shader->bind();
+        glDrawElements(GL_TRIANGLES, static_cast<uint32_t>(ibo->getCount()), GL_UNSIGNED_INT, 0);
+        
+        //vao->unbind();
 
     }
 

@@ -8,6 +8,7 @@ out vec4 v_Color;
 
 void main()
 {
+	//v_Color = vec4(colorPassed,1.0);
 	v_Color = vec4(colorPassed,1.0);
 	gl_Position = MVP * vec4(pos,1.0);
 }

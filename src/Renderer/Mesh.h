@@ -20,6 +20,15 @@ namespace Aero
 
         void Draw(Shader* shader);
 
+        void bind() { vao->bind(); }
+
+        void unbind()
+        {
+            vao->unbind();
+            vbo->unbind();
+            ibo->unbind();
+        }
+
         void setShader(Shader* s) { s->bind(); }
         Shader* getShader() { return shader; }
 

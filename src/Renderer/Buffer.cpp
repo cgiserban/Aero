@@ -10,6 +10,7 @@ namespace Aero
 		glCreateBuffers(1, &vboID);
 		glBindBuffer(GL_ARRAY_BUFFER, vboID);
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, drawType);
+
 	}
 	
 	 VertexBuffer::VertexBuffer(std::vector<Vertex>vertices, uint32_t size, GLenum drawType)
@@ -46,6 +47,7 @@ namespace Aero
 		glCreateBuffers(1, &iboID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count*sizeof(uint32_t), indices, drawType);
+
 	}
 
 	IndexBuffer::IndexBuffer(std::vector<uint32_t>indices, uint32_t count, GLenum drawType)
@@ -54,6 +56,7 @@ namespace Aero
 		glCreateBuffers(1, &iboID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), &indices[0], drawType);
+
 	}
 
 
@@ -85,16 +88,6 @@ namespace Aero
 	{
 		glCreateVertexArrays(1, &vaoID);
 		glBindVertexArray(vaoID);
-
-	}
-
-	VertexArray::VertexArray(VertexBuffer* VBO, IndexBuffer* IBO)
-	{
-		glCreateVertexArrays(1, &vaoID);
-		glBindVertexArray(vaoID);
-
-		setVertexBuffer(VBO);
-		setIndexBuffer(IBO);
 
 	}
 
@@ -134,10 +127,9 @@ namespace Aero
 
 	void VertexArray::setIndexBuffer(IndexBuffer* IBO)
 	{
+
 		glBindVertexArray(vaoID);
 		ibo = IBO;
-		ibo->bind();
-
 
 	}
 

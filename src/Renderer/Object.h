@@ -4,14 +4,14 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 
-#include "AssimpMesh.h"
+#include "Renderer/Mesh.h"
 
 namespace Aero
 {
 	class Object
 	{
 	public:
-		Object(std::string& path);
+		Object(std::string path);
 
 
 		void loadModel(std::string& path);
@@ -20,6 +20,8 @@ namespace Aero
 
 
 		void draw(Shader* shader);
+		void unbind();
+
 	private:
 		std::vector<Mesh> meshes;
 

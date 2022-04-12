@@ -4,27 +4,24 @@ namespace Aero
 {
 	void Renderer::init()
 	{
-
         glEnable(GL_MULTISAMPLE);
         glEnable(GL_DEPTH_TEST);
-        glfwWindowHint(GLFW_SAMPLES, 4);
-
-
 
         std::string vertexSrc = Shader::ParseShader("src/Renderer/Shaders/constant.vert");
         std::string fragmentSrc =Shader::ParseShader("src/Renderer/Shaders/constant.frag");
 
 
         shader = new Shader(vertexSrc, fragmentSrc);
-        
+        shader2 = new Shader(vertexSrc, fragmentSrc);
 
-        cam = new Camera(glm::vec3(2.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
+        cam = new Camera(glm::vec3(1.0f, 1.5f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
                          glm::radians(80.0f), 1.77f, 0.1f, 100.0f);
 
-        std::string path = "src/Renderer/Obj/monkey.obj";
-        obj = new Object(path);        
 
+        obj = new Object("src/Renderer/Obj/gadet.obj");
+        obj2 = new Object("src/Renderer/Obj/monkey.fbx");
 
+        
 
 	}
     void Renderer::draw()
@@ -32,15 +29,24 @@ namespace Aero
         clear();
 
 
-        glm::mat4 model = glm::mat4(1.0f);
-        model = model * glm::rotate(glm::mat4(1.0f), angle , glm::vec3(1.0f, 0.0f, 0.0f));
+        glm::mat4 M = glm::mat4(1.0f);
 
-        angle += 0.01;
+        glm::mat4 model = glm::mat4(1.0f);
+        model = model * glm::rotate(glm::mat4(1.0f), angle , glm::vec3(0.0f, 1.0f, 0.0f));
+        angle = angle + 0.001;
 
         glm::mat4 MVP = cam->viewProjection() * model;
+        glm::mat4 MVP2 = cam->viewProjection() * M;
 
         shader->setUniformM4f(MVP, "MVP");
+        shader2->setUniformM4f(MVP2, "MVP");
+
+        
         obj->draw(shader);
+        obj2->draw(shader2);
+
+
+
 
     }
     void Renderer::clear()

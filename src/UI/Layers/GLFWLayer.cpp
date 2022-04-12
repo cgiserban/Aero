@@ -15,8 +15,10 @@ namespace Aero
 
     void GLFWLayer::onAttach()
     {
-        window = glfwCreateWindow(props.width,props.height,props.title,nullptr,nullptr);
         
+        glfwWindowHint(GLFW_SAMPLES, 8);
+        window = glfwCreateWindow(props.width,props.height,props.title,nullptr,nullptr);
+
         glfwMakeContextCurrent(window);
         glfwSetWindowUserPointer(window,&data);
         setVSync(true);

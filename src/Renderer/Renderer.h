@@ -29,8 +29,11 @@ namespace Aero
 
 
 		Shader* shader;
+		Shader* shader2;
+
 		Camera* cam;
 		Object* obj;
+		Object* obj2;
 
 		glm::mat4 M;
 		glm::mat4 V;

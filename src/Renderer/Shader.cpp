@@ -134,32 +134,46 @@ namespace Aero
 
 	void Shader::setUniformf(float f, const char* name)
 	{
+		this->bind();
 		unsigned int location = glGetUniformLocation(rendererID, name);
 		glUniform1f(location, f);
+		this->unbind();
+
 	}
 
 	void Shader::setUniformi(int i, const char* name)
 	{
+		this->bind();
 		unsigned int location = glGetUniformLocation(rendererID, name);
 		glUniform1i(location, i);
+		this->unbind();
+
 	}
 
 	void Shader::setUniform3f(glm::vec3 vect, const char* name)
 	{
+		this->bind();
 		unsigned int location = glGetUniformLocation(rendererID, name);
 		glUniform3f(location, vect.x, vect.y, vect.z);
+		this->unbind();
 	}
 
 	void Shader::setUniform4f(glm::vec4 vect, const char* name)
 	{
+		this->bind();
 		unsigned int location = glGetUniformLocation(rendererID, name);
 		glUniform4f(location, vect.r, vect.g, vect.b, vect.a);
+		this->unbind();
+
 	}
 
 	void Shader::setUniformM4f(glm::mat4 matrix, const char* name)
 	{
+		this->bind();
 		unsigned int location = glGetUniformLocation(rendererID, name);
 		glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
+		this->unbind();
+
 	}
 
 
