@@ -199,13 +199,13 @@ namespace Aero
         meshes.push_back(m);
     }
 
-    void Object::draw(Shader* shader)
+    void Object::draw()
     {
         for (int i = 0; i < meshes.size(); i++)
         {
             meshes[i].bind();
-            meshes[i].setShader(shader);
-            meshes[i].draw(shader);
+            meshes[i].setShader(attachedShader);
+            meshes[i].draw(attachedShader);
         }
     }
 

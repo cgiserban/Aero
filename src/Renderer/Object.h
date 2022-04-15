@@ -15,7 +15,6 @@ namespace Aero
 		Object() {};
 		Object(Object* obj);
 
-
 		void loadModel(std::string& path);
 		void processNode(aiNode* node, const aiScene* scene);
 		Mesh processMesh(aiMesh* mesh, const aiScene* scene);
@@ -27,11 +26,19 @@ namespace Aero
 
 		std::vector<Mesh> getMeshes() { return meshes; }
 		void addMesh(Mesh m);
-		void draw(Shader* shader);
+	
+		Shader* getShader() { return attachedShader; }
+		void addShader(Shader* shader) { attachedShader = shader; }
+
+		void draw();
 		void unbind();
+
+		const char* getName() { return name; }
+		void setName(const char* _name) { name = _name; }
 
 	private:
 		std::vector<Mesh> meshes;
-
+		Shader* attachedShader;
+		const char* name = "Object";
 	};
 }

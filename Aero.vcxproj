@@ -180,6 +180,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Renderer\Scene.cpp" />
+    <ClCompile Include="src\Renderer\Light.cpp" />
     <ClCompile Include="src\Renderer\Mesh.cpp" />
     <ClCompile Include="src\Renderer\Object.cpp" />
     <ClCompile Include="src\Renderer\Camera.cpp" />
@@ -211,6 +213,8 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Renderer\Scene.h" />
+    <ClInclude Include="src\Renderer\Light.h" />
     <ClInclude Include="src\Renderer\Mesh.h" />
     <ClInclude Include="src\Renderer\Object.h" />
     <ClInclude Include="src\Renderer\Camera.h" />
@@ -245,6 +249,8 @@
   <ItemGroup>
     <None Include="src\Renderer\Shaders\constant.frag" />
     <None Include="src\Renderer\Shaders\constant.vert" />
+    <None Include="src\Renderer\Shaders\diffuse.frag" />
+    <None Include="src\Renderer\Shaders\diffuse.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

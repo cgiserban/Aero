@@ -45,11 +45,14 @@ namespace Aero
 		void setTexture(int location,const char* name, Texture& txt);
 		void listTextures();
 
+		const char* getName() { return name; }
+		void setName(const char* _name) { name = _name; }
 
 	private:
 		uint32_t rendererID;
 		std::vector<TextureData> textures;
 
+		const char* name = "Shader";
 		
 
 	};

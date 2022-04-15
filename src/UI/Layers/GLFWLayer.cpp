@@ -56,7 +56,7 @@ namespace Aero
         
         if (!ui.isWindowMimimized())
         {
-            renderEngine->draw();
+            renderEngine->render();
         }
     }
 

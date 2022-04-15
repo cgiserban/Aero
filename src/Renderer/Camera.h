@@ -11,7 +11,6 @@ namespace Aero {
 
 		Camera(glm::vec3 _eye, glm::vec3 _look, glm::vec3 _up,
 			double _fov=45.0, double _aspectRatio = 1.77, double _near = 0.0001, double _far = 500.0);
-
 		
 		void move(glm::vec3 m);
 		void rotate(glm::vec3 r) {};
@@ -25,6 +24,10 @@ namespace Aero {
 		glm::mat4 view() { return viewMatrix; }
 		glm::mat4 projection() { return projectionMatrix; }
 		glm::mat4 viewProjection() { return viewProjectionMatrix; }
+
+		const char* getName() { return name; }
+		void setName(const char* _name) { name = _name; }
+
 
 	//private:
 
@@ -46,6 +49,8 @@ namespace Aero {
 		glm::mat4 viewMatrix;
 		glm::mat4 projectionMatrix;
 		glm::mat4 viewProjectionMatrix;
+
+		const char* name = "Camera";
 
 	};
 }
