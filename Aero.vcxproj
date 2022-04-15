@@ -97,7 +97,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;$(SolutionDir)vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalHeaderUnitDependencies>
       </AdditionalHeaderUnitDependencies>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;$(SolutionDir)vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalHeaderUnitDependencies>
       </AdditionalHeaderUnitDependencies>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -141,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;$(SolutionDir)vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalHeaderUnitDependencies>
       </AdditionalHeaderUnitDependencies>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -163,7 +163,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)vendor\assimp\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\glew\include;$(SolutionDir)vendor\imgui;$(SolutionDir)vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalHeaderUnitDependencies>
       </AdditionalHeaderUnitDependencies>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>

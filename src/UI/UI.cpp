@@ -18,14 +18,6 @@ namespace Aero
 
     }
 
-    UI::~UI()
-    {
-        shutdown();
-        for (Layer* layer : uiStack)
-        {
-            layer->onDetach();
-        }
-    }
 
     void UI::init()
     {
@@ -67,6 +59,12 @@ namespace Aero
         {
             (*--it)->onDetach();
         }
+    }
+
+
+    UI::~UI()
+    {
+        shutdown();
     }
 
     void UI::onEvent(Event &event)
