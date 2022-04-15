@@ -8,6 +8,11 @@ namespace Aero
         loadModel(path);
     }
 
+    Object::Object(Object* obj)
+    {
+        meshes = obj->getMeshes();
+    }
+
 
     void Object::loadModel(std::string& path)
     {
@@ -20,7 +25,7 @@ namespace Aero
             AERO_CLIENT_ERROR("{0}", import.GetErrorString());
         }
 
-        processNode(scene->mRootNode, scene);
+        if (scene != NULL) processNode(scene->mRootNode, scene);
     }
 
     void Object::processNode(aiNode* node, const aiScene* scene)
@@ -31,6 +36,7 @@ namespace Aero
             aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
             meshes.push_back(processMesh(mesh, scene));
         }
+
         // then do the same for each of its children
         for (unsigned int i = 0; i < node->mNumChildren; i++)
         {
@@ -106,6 +112,92 @@ namespace Aero
         return Mesh(vertices, indices);//, textures);
     }
 
+    Object Object::createPrimTriangle()
+    {
+        Vertex v1(glm::vec3( 0.0, 0.0, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(0.0, 0.0));
+        Vertex v2(glm::vec3( 1.0, 0.0, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(1.0, 0.0));
+        Vertex v3(glm::vec3( 0.0, 1.0, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(0.5, 1.0));
+
+        std::vector<Vertex> vertices;
+        vertices.push_back(v1);
+        vertices.push_back(v2);
+        vertices.push_back(v3);
+
+        std::vector<uint32_t> indices;
+        indices.push_back(0);
+        indices.push_back(1);
+        indices.push_back(2);
+
+
+        Object obj;
+        obj.addMesh(Mesh(vertices,indices));
+
+        return obj;
+    }
+
+    Object Object::createPrimSquare()
+    {
+        Vertex v1(glm::vec3(-0.5, -0.5, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(0.0, 0.0));
+        Vertex v2(glm::vec3(0.5, -0.5, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(1.0, 0.0));
+        Vertex v3(glm::vec3(0.5, 0.5, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(1.0, 1.0));
+        Vertex v4(glm::vec3(-0.5, 0.5, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(0.0, 1.0));
+
+        std::vector<Vertex> vertices;
+        vertices.push_back(v1);
+        vertices.push_back(v2);
+        vertices.push_back(v3);
+        vertices.push_back(v4);
+
+        std::vector<uint32_t> indices;
+        indices.push_back(0);
+        indices.push_back(1);
+        indices.push_back(2);
+
+        indices.push_back(2);
+        indices.push_back(3);
+        indices.push_back(0);
+
+
+        Object obj;
+        obj.addMesh(Mesh(vertices, indices));
+        return obj;
+    }
+
+
+
+    Object Object::createPrimRectangle()
+    {
+        Vertex v1(glm::vec3(-0.5,-0.25, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(0.0, 0.0));
+        Vertex v2(glm::vec3( 0.5,-0.25, 0.0), glm::vec3(0.5, 0.5, 1.0), glm::vec2(1.0, 0.0));
+        Vertex v3(glm::vec3( 0.5, 0.25, 0.0),  glm::vec3(0.5, 0.5, 1.0), glm::vec2(1.0, 1.0));
+        Vertex v4(glm::vec3(-0.5, 0.25, 0.0),  glm::vec3(0.5, 0.5, 1.0), glm::vec2(0.0, 1.0));
+
+        std::vector<Vertex> vertices;
+        vertices.push_back(v1);
+        vertices.push_back(v2);
+        vertices.push_back(v3);
+        vertices.push_back(v4);
+
+        std::vector<uint32_t> indices;
+        indices.push_back(0);
+        indices.push_back(1);
+        indices.push_back(2);
+
+        indices.push_back(2);
+        indices.push_back(3);
+        indices.push_back(0);
+
+
+        Object obj;
+        obj.addMesh(Mesh(vertices, indices));
+        return obj;
+    }
+
+
+    void Object::addMesh(Mesh m)
+    {
+        meshes.push_back(m);
+    }
 
     void Object::draw(Shader* shader)
     {

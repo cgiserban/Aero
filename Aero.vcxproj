@@ -201,6 +201,7 @@
     <ClCompile Include="src\UI\Panels\NodeEditor.cpp" />
     <ClCompile Include="src\UI\UI.cpp" />
     <ClCompile Include="src\Aero.cpp" />
+    <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />
     <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="src\UI\Panels\NodeEditor.h" />
     <ClInclude Include="src\UI\Panels\Panel.h" />
     <ClInclude Include="src\UI\UI.h" />
+    <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="vendor\imgui\imgui.h" />
     <ClInclude Include="vendor\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />

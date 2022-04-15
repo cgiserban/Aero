@@ -4,6 +4,7 @@
 #include "Renderer/Camera.h"
 #include "Renderer/Buffer.h"
 #include "Renderer/Object.h"
+#include "Renderer/Texture.h"
 
 #include "glm/vec4.hpp"
 #include "glm/mat4x4.hpp"
@@ -27,11 +28,12 @@ namespace Aero
 		glm::vec4 bgColor = glm::vec4(0.18, 0.18, 0.18, 1.0);
 		float angle = 0;
 
-
 		Shader* shader;
-
+		Texture* txr;
 		Camera* cam;
 		Object* obj;
+
+		Object* obj2;
 
 
 

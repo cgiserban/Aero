@@ -1,7 +1,5 @@
 #include "Shader.h"
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 namespace Aero
 {
@@ -179,64 +177,18 @@ namespace Aero
 
 	}
 
-	void Shader::setTexture(int location, const char* name, std::string texturePath, bool mipMapped)
+	void Shader::setTexture(int location, const char* name, Texture& txt)
 	{
-
-		const char* texPath = texturePath.c_str();
-		std::string extension = texturePath.substr(texturePath.find_last_of(".") + 1);
-		
-		unsigned int texID;
-		glCreateTextures(GL_TEXTURE_2D, 1, &texID);
+		this->bind();
 
 		glActiveTexture(GL_TEXTURE0+location);
-		glBindTexture(GL_TEXTURE_2D, texID);
+		glBindTexture(GL_TEXTURE_2D, txt.get());
+		setUniformi(location, name);
 
-		int w, h, nrChannels;
-		stbi_set_flip_vertically_on_load(1);
-		
-		unsigned char* data = nullptr;
+		textures.push_back(TextureData(location, name, txt.getPath()));
+		this->unbind();
 
-
-		if (extension == "jpg" || extension == "tga")
-		{
-			data = stbi_load(texPath, &w, &h, &nrChannels, STBI_rgb);
-		}
-		else if (extension == "png")
-		{
-			data = stbi_load(texPath, &w, &h, &nrChannels, STBI_rgb_alpha);
-		}
-
-
-		glTextureStorage2D(texID, 1, GL_RGB16, w, h);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_LINEAR);
-		
-		if (data)
-		{
-			if (extension == "jpg" || extension == "tga")
-			{
-				glTextureSubImage2D(texID, 0, 0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, data);
-				textures.push_back(TextureData(location, name, texPath));
-				setUniformi(location, name);
-				stbi_image_free(data);
-
-			}
-			else if (extension == "png")
-			{
-				glTextureSubImage2D(texID, 0, 0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
-				textures.push_back(TextureData(location, name, texPath));
-				setUniformi(location, name);
-				stbi_image_free(data);
-			}
-		else
-			{
-				AERO_CORE_ERROR("Texture {0} could not be loaded", texPath);
-			}
-		}
 	}
-
-
-
 
 	void Shader::listTextures()
 	{

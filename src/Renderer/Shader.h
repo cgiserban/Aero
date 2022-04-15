@@ -5,7 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-
+#include "Texture.h"
 #include "glm/glm.hpp"
 
 namespace Aero
@@ -42,7 +42,7 @@ namespace Aero
 		void setUniformM4f(glm::mat4 matrix, const char* name);
 
 		//Textures
-		void setTexture(int location,const char* name, std::string texPath, bool mipMapped = true);
+		void setTexture(int location,const char* name, Texture& txt);
 		void listTextures();
 
 

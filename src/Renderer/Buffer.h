@@ -17,12 +17,9 @@ namespace Aero
 		glm::vec3 Position;
 		glm::vec3 Normal;
 		glm::vec2 TexCoords;
-	};
 
-	struct Texture {
-		unsigned int id;
-		std::string type;
-		std::string path;
+		Vertex(glm::vec3 pos, glm::vec3 normal, glm::vec2 texCoord) : Position(pos), Normal(normal), TexCoords(texCoord) {}
+		Vertex() {}
 	};
 
 	enum class ShaderDataType
